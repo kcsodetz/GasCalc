@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Gets info on a specific car using Shine API
  */
 
-public class getCarInfo
+public class GetCarInfo
 {
 
 
