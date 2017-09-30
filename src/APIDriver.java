@@ -41,12 +41,12 @@ public class APIDriver {
         }
         {
             try(Scanner scanner = new Scanner(response)) {
-                if (scanner.useDelimiter("\\A").next().equals("[]"))
+                String parsed = scanner.useDelimiter("\\A").next();
+                if (parsed.equals("[]"))
                 {
-                    String err = "The " + year + " " + make + " " + model + " doesn't exist";
-                    return err;
+                    return "The " + year + " " + make + " " + model + " doesn't exist";
                 }else{
-                    return scanner.useDelimiter("\\A").next();
+                    return parsed;
                 }
             }
         }
@@ -144,9 +144,8 @@ public class APIDriver {
         double cityMPG;
         double highwayMPG;
         String apiCallString = apiDriver.connectToAPI(url, make, model, year);
-        System.out.println(apiCallString);
-        //cityMPG = apiDriver.getCityMPG(apiCallString);
-        //highwayMPG = apiDriver.getHighwayMPG(apiCallString);
-        //System.out.println("\nCity MPG: "+cityMPG+"\n"+"Highway MPG: "+highwayMPG);
+        cityMPG = apiDriver.getCityMPG(apiCallString);
+        highwayMPG = apiDriver.getHighwayMPG(apiCallString);
+        System.out.println("\nCity MPG: "+cityMPG+"\n"+"Highway MPG: "+highwayMPG);
     }
 }

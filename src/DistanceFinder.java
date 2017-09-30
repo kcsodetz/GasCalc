@@ -65,10 +65,6 @@ public class DistanceFinder {
         String dest0 = input.nextLine();
         String dest = dest0.replace(" ","+");
         String apiReturn = distanceFinder.connectToAPI(LINK, origin, dest);
-//        String or = "chicago";
-//        String de = "new york";
-//        String apiReturn = distanceFinder.connectToAPI(LINK, or, de);
-        //System.out.println(apiReturn);
         distanceFinder.parseAPIReturn(apiReturn);
     }
 }
