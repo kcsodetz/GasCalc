@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6582679-6ccc-4a7e-840f-4f0026b71b68" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/getCarInfo.java" afterPath="$PROJECT_DIR$/src/GetCarInfo.java" />
-    </list>
+    <list default="true" id="e6582679-6ccc-4a7e-840f-4f0026b71b68" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -651,7 +649,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506810248348</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="GetCarInfo change">
+      <created>1506810381938</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1506810381938</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -709,7 +714,8 @@
     <MESSAGE value="Edit APIDriver" />
     <MESSAGE value="Edit Distance Driver, add parse for miles" />
     <MESSAGE value="Fix APIDriver" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix APIDriver" />
+    <MESSAGE value="GetCarInfo change" />
+    <option name="LAST_COMMIT_MESSAGE" value="GetCarInfo change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
