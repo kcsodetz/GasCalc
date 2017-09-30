@@ -1,5 +1,12 @@
 package Gastimator.src;
 
+
+/**
+ *
+ * @author Shiv Paul
+ * @since 9/30/2017
+ */
+
 public class Calculate
 {
     static double getCityMPG()      //from APIDriver
@@ -19,20 +26,17 @@ public class Calculate
 
     public static void main(String[] args)
     {
-        double CityMPG = getCityMPG();
-        double HwMPG = getHwMPG();
-        double distance = getDistance();
-        double gasReq;
+        getCarInfo car;
 
-        if(distance>40)
-        {
-            gasReq = distance/HwMPG;
-        }
-        else
-        {
-            gasReq = distance/CityMPG;
-        }
+        String make = car.getMake();
+        String model = car.getModel();
+        String year = car.getYear();
 
-        System.out.println("Gas required is " + gasReq+ " gallons.");
+        String apiResponse = car.shineConnect(make, model, year);
+
+        double CityMPG = car.getCityMPG(apiResponse);
+        double HwMPG = car.getHighwayMPG(apiResponse);
+
+
     }
 }
