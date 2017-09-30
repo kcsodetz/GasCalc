@@ -21,7 +21,7 @@ public class GetCarInfo
      * @return make of the vehicle
      */
 
-    public  String getMake()
+    public String getMake()
     {
         Scanner input = new Scanner(System.in);
         System.out.print("Make: ");
@@ -92,27 +92,21 @@ public class GetCarInfo
         InputStream response = null;
         URLConnection connection;
         String url = "https://apis.solarialabs.com/shine/v1/vehicle-stats/specs?";
-        try
-        {
+        try {
             connection = new URL(url+"make="+make+"&model="+model+"&year="+year+"&apikey="+APIKEY).openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
             response = connection.getInputStream();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         {
-            try(Scanner scanner = new Scanner(response))
-            {
-                if (scanner.useDelimiter("\\A").next().equals("[]"))
+            try(Scanner scanner = new Scanner(response)) {
+                String parsed = scanner.useDelimiter("\\A").next();
+                if (parsed.equals("[]"))
                 {
-                    String err = "The " + year + " " + make + " " + model + " doesn't exist";
-                    return err;
-                }
-                else
-                {
-                    return scanner.useDelimiter("\\A").next();
+                    return "The " + year + " " + make + " " + model + " doesn't exist";
+                }else{
+                    return parsed;
                 }
             }
         }
