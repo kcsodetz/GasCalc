@@ -44,7 +44,7 @@ public class APIDriver {
         assert response != null;
         try(Scanner scanner = new Scanner(response)){
             String responseBody = scanner.useDelimiter("\\A").next();
-            System.out.println(responseBody);
+            //System.out.println(responseBody);
             return responseBody;
         }
     }
@@ -62,6 +62,65 @@ public class APIDriver {
         return Double.parseDouble(response);
     }
 
+    public static String getMake()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Make: ");
+        String make0 = input.nextLine();
+        String make = make0.trim();
+        return make;
+    }
+
+    public static String getModel()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Model: ");
+        String model0 = input.nextLine();
+        String model = model0.trim();
+        return model;
+    }
+
+    public static String getYear()
+    {
+        Scanner input = new Scanner(System.in);
+        String year0, year;
+        boolean yearNum = true;
+        int i=0;
+
+        System.out.print("Year: ");
+        year0 = input.nextLine();
+        year = year0.trim();
+
+        while(yearNum)
+        {
+            for(i=0; i<year.length(); i++)
+            {
+                if(Character.isDigit(year.charAt(i)))
+                {
+                    i++;
+                }
+                else
+                {
+                    yearNum=false;
+                    break;
+                }
+            }
+
+            if(!yearNum)
+            {
+                System.out.print("Year: ");
+                year0 = input.nextLine();
+                year = year0.trim();
+                yearNum = true;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return year;
+    }
+
     /**
      * Main Method
      * @param args default arguments
@@ -69,14 +128,25 @@ public class APIDriver {
     public static void main(String[] args) {
         APIDriver apiDriver = new APIDriver();
         String url = "https://apis.solarialabs.com/shine/v1/vehicle-stats/specs?";
-        String make = "honda";
-        String model = "cr-v";
-        String year = "2012";
+
+        // String make = "honda";
+        // String model = "cr-v";
+        // String year = "2012";
+
+        Scanner input = new Scanner(System.in);
+        
+        String make = getMake();
+        String model = getModel();
+        String year = getYear();
+
         double cityMPG;
         double highwayMPG;
+        
         String apiCallString = apiDriver.connectToAPI(url, make, model, year, APIKEY);
+        
         cityMPG = apiDriver.getCityMPG(apiCallString);
         highwayMPG = apiDriver.getHighwayMPG(apiCallString);
-        System.out.println("City MPG: "+cityMPG+"\n"+"Highway MPG: "+highwayMPG);
+
+        System.out.println("\nCity MPG: "+cityMPG+"\n"+"Highway MPG: "+highwayMPG);
     }
 }
