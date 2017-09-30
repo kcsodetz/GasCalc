@@ -1,9 +1,7 @@
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.DoubleSummaryStatistics;
 import java.util.Scanner;
 
 /**
@@ -13,6 +11,8 @@ import java.util.Scanner;
  * @since 9/29/2017
  */
 public class APIDriver {
+
+    private static final String URL = "https://apis.solarialabs.com/shine/v1/vehicle-stats/specs?";
 
     private static final String APIKEY = "A8874x8oBWR0GdYXGccI2tYFFULXur7a";
 
@@ -45,9 +45,7 @@ public class APIDriver {
         }
         assert response != null;
         try(Scanner scanner = new Scanner(response)){
-            String responseBody = scanner.useDelimiter("\\A").next();
-            System.out.println(responseBody);
-            return responseBody;
+            return scanner.useDelimiter("\\A").next();
         }
     }
 
@@ -70,13 +68,12 @@ public class APIDriver {
      */
     public static void main(String[] args) {
         APIDriver apiDriver = new APIDriver();
-        String url = "https://apis.solarialabs.com/shine/v1/vehicle-stats/specs?";
         String make = "honda";
         String model = "cr-v";
         String year = "2012";
         double cityMPG;
         double highwayMPG;
-        String apiCallString = apiDriver.connectToAPI(url, make, model, year, APIKEY);
+        String apiCallString = apiDriver.connectToAPI(URL, make, model, year, APIKEY);
         cityMPG = apiDriver.getCityMPG(apiCallString);
         highwayMPG = apiDriver.getHighwayMPG(apiCallString);
         System.out.println("City MPG: "+cityMPG+"\n"+"Highway MPG: "+highwayMPG);
