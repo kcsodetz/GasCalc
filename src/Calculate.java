@@ -1,6 +1,7 @@
 package Gastimator.src;
 
 
+
 /**
  * @author Shiv Paul
  * @since 9/30/2017
@@ -41,5 +42,6 @@ public class Calculate
         }
 
         System.out.println("You need " + gasReq + " gallons of gas for the trip!!");
+
     }
 }
