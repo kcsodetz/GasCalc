@@ -18,24 +18,22 @@ public class APIDriver {
      * Default constructor
      */
     private APIDriver(){
-
     }
 
     /**
-     * Connects the API to git
+     * Sends the HTML request to get the vehicle data based on given parameters
      * @param url url for the http call
      * @param make make of the vehicle
      * @param model model of the vehicle
      * @param year year of the vehicle
-     * @param key API key
      * @return responseBody, string response of the API call
      */
-    public String connectToAPI(String url, String make, String model, String year, String key) {
+    public String connectToAPI(String url, String make, String model, String year) {
         String charset = "UTF-8";
         InputStream response = null;
         URLConnection connection;
         try {
-            connection = new URL(url+"make="+make+"&model="+model+"&year="+year+"&apikey="+key).openConnection();
+            connection = new URL(url+"make="+make+"&model="+model+"&year="+year+"&apikey="+APIKEY).openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
             response = connection.getInputStream();
         } catch (IOException e) {
@@ -43,78 +41,80 @@ public class APIDriver {
         }
         assert response != null;
         try(Scanner scanner = new Scanner(response)){
-            String responseBody = scanner.useDelimiter("\\A").next();
-            //System.out.println(responseBody);
-            return responseBody;
+            return scanner.useDelimiter("\\A").next();
         }
     }
 
+    /**
+     * Parses City MPG from api call
+     * @param apiCallString api string to be parsed
+     * @return city mpg as a double
+     */
     public double getCityMPG(String apiCallString) {
-
         String response = apiCallString.substring(apiCallString.indexOf("City_Unadj_Conventional_Fuel"), apiCallString.indexOf("Hwy_Unadj_Conventional_Fuel"));
         response = response.substring(response.indexOf(":") + 1, response.indexOf(","));
         return Double.parseDouble(response);
     }
 
+    /**
+     * Parses Highway MPG from api call
+     * @param apiCallString api string to be parsed
+     * @return highway mpg as a double
+     */
     public double getHighwayMPG(String apiCallString) {
         String response = apiCallString.substring(apiCallString.indexOf("Hwy_Unadj_Conventional_Fuel"), apiCallString.indexOf("Air_AspirMethod"));
         response = response.substring(response.indexOf(":") + 1, response.indexOf(","));
         return Double.parseDouble(response);
     }
 
-    public static String getMake()
-    {
+    /**
+     * Gets and parses the make of the vehicle
+     * @return make of the vehicle
+     */
+    public static String getMake() {
         Scanner input = new Scanner(System.in);
         System.out.print("Make: ");
         String make0 = input.nextLine();
-        String make = make0.trim();
-        return make;
+        return make0.trim();
     }
 
-    public static String getModel()
-    {
+    /**
+     * Gets and parses the model of the car
+     * @return the mode of the car, minus any spaces
+     */
+    public static String getModel() {
         Scanner input = new Scanner(System.in);
         System.out.print("Model: ");
         String model0 = input.nextLine();
-        String model = model0.trim();
-        return model;
+        return model0.trim();
     }
 
-    public static String getYear()
-    {
+    /**
+     * Gets and checks the year from user input
+     * @return year string
+     */
+    public static String getYear() {
         Scanner input = new Scanner(System.in);
         String year0, year;
         boolean yearNum = true;
-        int i=0;
-
+        int i;
         System.out.print("Year: ");
         year0 = input.nextLine();
         year = year0.trim();
-
-        while(yearNum)
-        {
-            for(i=0; i<year.length(); i++)
-            {
-                if(Character.isDigit(year.charAt(i)))
-                {
-                    i++;
-                }
-                else
-                {
+        while(true) {
+            for(i=0; i<year.length(); i++) {
+                if(!Character.isDigit(year.charAt(i))) {
                     yearNum=false;
                     break;
                 }
             }
-
-            if(!yearNum)
-            {
+            if(!yearNum) {
                 System.out.print("Year: ");
                 year0 = input.nextLine();
                 year = year0.trim();
                 yearNum = true;
             }
-            else
-            {
+            else {
                 break;
             }
         }
@@ -128,25 +128,17 @@ public class APIDriver {
     public static void main(String[] args) {
         APIDriver apiDriver = new APIDriver();
         String url = "https://apis.solarialabs.com/shine/v1/vehicle-stats/specs?";
-
         // String make = "honda";
         // String model = "cr-v";
         // String year = "2012";
-
-        Scanner input = new Scanner(System.in);
-        
         String make = getMake();
         String model = getModel();
         String year = getYear();
-
         double cityMPG;
         double highwayMPG;
-        
-        String apiCallString = apiDriver.connectToAPI(url, make, model, year, APIKEY);
-        
+        String apiCallString = apiDriver.connectToAPI(url, make, model, year);
         cityMPG = apiDriver.getCityMPG(apiCallString);
         highwayMPG = apiDriver.getHighwayMPG(apiCallString);
-
         System.out.println("\nCity MPG: "+cityMPG+"\n"+"Highway MPG: "+highwayMPG);
     }
 }
