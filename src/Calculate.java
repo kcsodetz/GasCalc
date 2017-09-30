@@ -10,6 +10,8 @@ public class Calculate
 {
     public static void main(String[] args)
     {
+        double gasReq;
+
         GetCarInfo car = new GetCarInfo();
         GetDistance trip = new GetDistance();
 
@@ -28,5 +30,16 @@ public class Calculate
         String googleResponse = trip.googleMapsConnect(origin, destination);
 
         double distance = trip.parseAPIReturn(googleResponse);
+
+        if(distance>40)
+        {
+            gasReq = distance/CityMPG;
+        }
+        else
+        {
+            gasReq = distance/HighwayMPG;
+        }
+
+        System.out.println("You need " + gasReq + " gallons of gas for the trip!!");
     }
 }

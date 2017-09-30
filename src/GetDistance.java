@@ -69,7 +69,8 @@ public class GetDistance
      */
     public double parseAPIReturn(String APIReturn)
     {
-        String parsed = APIReturn.substring(APIReturn.indexOf("distance")+42, APIReturn.indexOf(" mi"));
+        String parsed0 = APIReturn.substring(APIReturn.indexOf("distance")+42, APIReturn.indexOf(" mi"));
+        String parsed =  parsed0.replace(",","");
         return Double.parseDouble(parsed);
     }
 }
