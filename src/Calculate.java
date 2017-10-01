@@ -18,6 +18,10 @@ public class Calculate
         String model = car.getModel();
         String year = car.getYear();
 
+//        String make = "audi";
+//        String model = "a5";
+//        String year = "2015";
+
         String shineResponse = car.shineConnect(make, model, year);
 
         double CityMPG = car.getCityMPG(shineResponse);
@@ -43,10 +47,15 @@ public class Calculate
 
         double gasPrice = trip.getGasPrice(gasReq);
 
-        System.out.printf("You need %.2f gallons of gas for the trip\n", gasReq);
+        System.out.printf("\nYou need %.2f gallons of gas for the trip\n", gasReq);
         System.out.printf("Estimated cost of gas for the trip will be $%.2f\n", gasPrice);
 
-        String time = trip.parseTime(googleResponse);
-        System.out.println("You need " + time + " to get to your destination!");
+        String timeString = trip.parseTime(googleResponse);
+        int time = Integer.parseInt(timeString);
+        int minutes = time/60;
+        int hours = minutes/60;
+        minutes = minutes - hours*60;
+
+        System.out.println("You need " + hours + " hours and " + minutes + " minutes to get to your destination!");
     }
 }
