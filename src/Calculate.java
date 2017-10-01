@@ -49,13 +49,5 @@ public class Calculate
 
         System.out.printf("\nYou need %.2f gallons of gas for the trip\n", gasReq);
         System.out.printf("Estimated cost of gas for the trip will be $%.2f\n", gasPrice);
-
-        String timeString = trip.parseTime(googleResponse);
-        int time = Integer.parseInt(timeString);
-        int minutes = time/60;
-        int hours = minutes/60;
-        minutes = minutes - hours*60;
-
-        System.out.println("You need " + hours + " hours and " + minutes + " minutes to get to your destination!");
     }
 }

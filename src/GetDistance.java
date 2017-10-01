@@ -80,9 +80,10 @@ public class GetDistance {
 
     /**
      * @param APIReturn, string returned by google's api
+     * @param hm, 1 if hours, 2 if minutes
      * @return parsed, double containing total time needed for travel
      */
-    public String parseTime(String APIReturn)
+    public int parseTime(String APIReturn, int hm)
     {
         //System.out.println(APIReturn);
         String time0 = APIReturn.substring(APIReturn.lastIndexOf("duration"), APIReturn.lastIndexOf("status"));
@@ -96,8 +97,22 @@ public class GetDistance {
             }
         }
 
-       // String time1 = time0.substring(time0.lastIndexOf("value")+9, time0.indexOf("}")-3);
-        System.out.println(time);
-        return time;
+        int seconds = Integer.parseInt(time);
+        int minutes = seconds/60;
+        int hours = minutes/60;
+        minutes = minutes - hours*60;
+
+        if(hm==1)
+        {
+            return hours;
+        }
+        else if(hm==2)
+        {
+            return minutes;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
