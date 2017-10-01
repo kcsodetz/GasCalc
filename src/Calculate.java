@@ -1,7 +1,5 @@
 package Gastimator.src;
 
-
-
 /**
  * @author Shiv Paul
  * @since 9/30/2017
@@ -31,6 +29,8 @@ public class Calculate
         String googleResponse = trip.googleMapsConnect(origin, destination);
 
         double distance = trip.parseAPIReturn(googleResponse);
+
+        System.out.println("This trip is " + distance + " miles long!");
 
         if(distance>40)
         {
