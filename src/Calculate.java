@@ -30,7 +30,7 @@ public class Calculate
 
         double distance = trip.parseAPIReturn(googleResponse);
 
-        System.out.println("This trip is " + distance + " miles long!");
+        System.out.println("This trip is " + distance + " miles!");
 
         if(distance>40)
         {
