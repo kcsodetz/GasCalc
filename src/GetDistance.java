@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class GetDistance {
     public final String APIKEY = "AIzaSyD7GjH80EBchoi53fNvVRWGhBrWaPGP_iw";
+    public final double nationalAvg = 2.561;
 
     /**
      * @return origin, string containing name of origin place with " " replaced with "+"
@@ -65,9 +66,15 @@ public class GetDistance {
      * @return parsed, double containing number of miles between the points
      */
     public double parseDistance(String APIReturn) {
-        System.out.println(APIReturn);
+        //System.out.println(APIReturn);
         String parsed0 = APIReturn.substring(APIReturn.indexOf("distance") + 42, APIReturn.indexOf(" mi"));
         String parsed = parsed0.replace(",", "");
         return Double.parseDouble(parsed);
+    }
+
+    public double getGasPrice(double gasReq)
+    {
+        double gasPrice = gasReq*nationalAvg;
+        return gasPrice;
     }
 }

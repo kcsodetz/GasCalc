@@ -34,14 +34,18 @@ public class Calculate
 
         if(distance>40)
         {
-            gasReq = distance/CityMPG;
+            gasReq = distance/HighwayMPG;
         }
         else
         {
-            gasReq = distance/HighwayMPG;
+            gasReq = distance/CityMPG;
         }
 
-        System.out.println("You need " + gasReq + " gallons of gas for the trip!!");
+        double gasPrice = trip.getGasPrice(gasReq);
+
+        System.out.printf("You need %.2f gallons of gas for the trip\n", gasReq);
+        System.out.printf("Estimated cost of gas for the trip will be $%.2f", gasPrice);
+
 
     }
 }
