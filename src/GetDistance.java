@@ -70,9 +70,4 @@ public class GetDistance {
         String parsed = parsed0.replace(",", "");
         return Double.parseDouble(parsed);
     }
-
-//    public String getState(String googleResponse)
-//    {
-//
-//    }
 }

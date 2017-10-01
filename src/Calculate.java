@@ -28,9 +28,6 @@ public class Calculate
 
         String googleResponse = trip.googleMapsConnect(origin, destination);
 
-//      String state1 = trip.getState(googleResponse);
-//      String state2 = trip.getState(googleResponse);
-
         double distance = trip.parseDistance(googleResponse);
 
         System.out.println("This trip is " + distance + " miles!");
