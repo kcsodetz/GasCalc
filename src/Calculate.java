@@ -44,8 +44,9 @@ public class Calculate
         double gasPrice = trip.getGasPrice(gasReq);
 
         System.out.printf("You need %.2f gallons of gas for the trip\n", gasReq);
-        System.out.printf("Estimated cost of gas for the trip will be $%.2f", gasPrice);
+        System.out.printf("Estimated cost of gas for the trip will be $%.2f\n", gasPrice);
 
-
+        String time = trip.parseTime(googleResponse);
+        System.out.println("You need " + time + " to get to your destination!");
     }
 }

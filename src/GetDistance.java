@@ -77,4 +77,13 @@ public class GetDistance {
         double gasPrice = gasReq*nationalAvg;
         return gasPrice;
     }
+
+    /**
+     * @param APIReturn, string returned by google's api
+     * @return parsed, double containing total time needed for travel
+     */
+    public String parseTime(String APIReturn) {
+        String time = APIReturn.substring(APIReturn.indexOf("duration")+42, APIReturn.indexOf(" mins")+5);
+        return time;
+    }
 }
