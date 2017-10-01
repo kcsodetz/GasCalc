@@ -6,6 +6,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
+/**
+ * Gets driving distance between 2 location using google maps API
+ */
+
 public class GetDistance
 {
     public final String APIKEY = "AIzaSyD7GjH80EBchoi53fNvVRWGhBrWaPGP_iw";
@@ -69,6 +73,7 @@ public class GetDistance
      */
     public double parseAPIReturn(String APIReturn)
     {
+        //System.out.println(APIReturn);
         String parsed0 = APIReturn.substring(APIReturn.indexOf("distance")+42, APIReturn.indexOf(" mi"));
         String parsed =  parsed0.replace(",","");
         return Double.parseDouble(parsed);
