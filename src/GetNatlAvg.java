@@ -55,21 +55,15 @@ public class GetNatlAvg {
         HashMap<String, Double> map = new HashMap<>();
         System.out.println(response);
         diesel = Double.parseDouble(response.substring(response.indexOf("diesel")+7, response.indexOf("</diesel>")));
-//        collection[0] = diesel;
         map.put("Diesel", diesel);
         e85 = Double.parseDouble(response.substring(response.indexOf("e85")+4, response.indexOf("</e85>")));
-//        collection[1] = e85;
         map.put("E85", e85);
         electric = Double.parseDouble(response.substring(response.indexOf("electric")+9, response.indexOf("</electric>")));
-//        collection[2] = electric;
         midgrade = Double.parseDouble(response.substring(response.indexOf("midgrade")+9, response.indexOf("</midgrade>")));
-//        collection[3] = midgrade;
         map.put("Midgrade", midgrade);
         regular = Double.parseDouble(response.substring(response.indexOf("regular")+8, response.indexOf("</regular>")));
-//        collection[4] = regular;
         map.put("Regular", regular);
         premium = Double.parseDouble(response.substring(response.indexOf("premium")+8, response.indexOf("</premium>")));
-//        collection[5] = premium;
         map.put("Premium", premium);
         return map;
     }
