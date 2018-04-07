@@ -54,16 +54,17 @@ public class GetNatlAvg {
     private HashMap parseNatlAvg(String response) {
         HashMap<String, Double> map = new HashMap<>();
         System.out.println(response);
-        diesel = Double.parseDouble(response.substring(response.indexOf("diesel")+7, response.indexOf("</diesel>")));
+        diesel = Double.parseDouble(response.substring(response.indexOf("diesel") + 7, response.indexOf("</diesel>")));
         map.put("Diesel", diesel);
-        e85 = Double.parseDouble(response.substring(response.indexOf("e85")+4, response.indexOf("</e85>")));
+        e85 = Double.parseDouble(response.substring(response.indexOf("e85") + 4, response.indexOf("</e85>")));
         map.put("E85", e85);
-        electric = Double.parseDouble(response.substring(response.indexOf("electric")+9, response.indexOf("</electric>")));
-        midgrade = Double.parseDouble(response.substring(response.indexOf("midgrade")+9, response.indexOf("</midgrade>")));
+        electric = Double.parseDouble(response.substring(response.indexOf("electric") + 9, response.indexOf("</electric>")));
+        map.put("Electric", electric);
+        midgrade = Double.parseDouble(response.substring(response.indexOf("midgrade") + 9, response.indexOf("</midgrade>")));
         map.put("Midgrade", midgrade);
-        regular = Double.parseDouble(response.substring(response.indexOf("regular")+8, response.indexOf("</regular>")));
+        regular = Double.parseDouble(response.substring(response.indexOf("regular") + 8, response.indexOf("</regular>")));
         map.put("Regular", regular);
-        premium = Double.parseDouble(response.substring(response.indexOf("premium")+8, response.indexOf("</premium>")));
+        premium = Double.parseDouble(response.substring(response.indexOf("premium") + 8, response.indexOf("</premium>")));
         map.put("Premium", premium);
         return map;
     }
